@@ -1,0 +1,24 @@
+Bundle-Name: Water OSGi Test Bundle
+Bundle-SymbolicName: Water-implementation-osgi-test-bundle
+Bundle-Activator: it.water.implementation.osgi.test.bundle.TestBundleActivator
+Import-Package: \
+    org.osgi.framework,\
+    org.slf4j.*,\
+    org.apache.aries.jpa.*,\
+    org.apache.aries.cdi.*,\
+    org.hibernate.annotations;version='[5,6)',\
+    org.hibernate.proxy;version='[5,6)',\
+    org.hibernate.validator;version='${range;[=,+)}',\
+    org.hibernate.validator.*;version='${range;[=,+)}',\
+    javassist.util.proxy,\
+    jakarta.validation,\
+    jakarta.validation.*,\
+    javax.persistence,\
+    javax.transaction,\
+    javax.enterprise.*,\
+    org.osgi.service.*,\
+    javax.persistence.*,\
+    it.water.*
+DynamicImport-Package: *
+Export-Package: it.water.implementation.osgi.test.bundle
+-cdiannotations: *;discover=annotated_by_bean

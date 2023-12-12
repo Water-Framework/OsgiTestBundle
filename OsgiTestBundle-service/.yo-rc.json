@@ -1,0 +1,10 @@
+{
+    "generator-water": {
+        "inner-project": true,
+        "project-type": "custom",
+        "projectName": "OsgiTestBundle",
+        "projectGroupId": "it.water.osgi.test.bundle",
+        "projectVersion": "3.0.0",
+        "projectFolder": "OsgiTestBundle-service"
+    }
+}

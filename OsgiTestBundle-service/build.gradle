@@ -1,0 +1,93 @@
+import aQute.bnd.gradle.Bundle
+
+plugins {
+    id "biz.aQute.bnd.builder"
+}
+
+dependencies {
+    //SLF4J
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: project.slf4jVersion
+    //lombok
+    implementation group: 'org.projectlombok', name: 'lombok', version: project.lombokVersion
+    annotationProcessor 'org.projectlombok:lombok:' + project.lombokVersion
+    //Persistence
+    implementation group: 'javax.persistence', name: 'javax.persistence-api', version: project.javaxPersistenceVersion
+    implementation group: 'javax.transaction', name: 'javax.transaction-api', version: project.javaxTransactionApiVersion
+    //Jackson
+    implementation group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: project.jacksonVersion
+    //Encryption
+    implementation group: 'org.bouncycastle', name: 'bcmail-jdk15on', version: project.bouncyCastleVersion
+    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: project.nimbusJoseJwtVersion
+    //OSGi
+    implementation group: "org.osgi", name: "osgi.core", version: project.osgiVersion
+    implementation group: "org.osgi", name: "osgi.cmpn", version: project.osgiCompendiumVersion
+    implementation group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
+    //Validation
+    //Validation
+    implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: project.jakartaValidationVersion
+    implementation group: "org.hibernate", name: "hibernate-validator", version: project.hibernateValidatorVersion
+    //test utils
+    implementation group: "org.apache.karaf.itests", name: "common", version: project.karafVersion
+    implementation group: "org.apache.karaf", name: "apache-karaf", version: project.karafVersion
+    implementation group: 'org.ops4j.pax.exam', name: 'pax-exam-container-karaf', version: project.paxExamVersion
+    implementation 'org.reflections:reflections:0.9.12'
+    //Annotations
+    implementation 'org.atteo.classindex:classindex:' + project.atteoClassIndexVersion
+    annotationProcessor('org.atteo.classindex:classindex:' + project.atteoClassIndexVersion)
+
+    implementation group: 'it.water.core', name: 'Core-api', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-bundle', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-interceptors', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-model', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-permission', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-registry', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-security', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-service', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-validation', version: project.waterVersion
+    implementation group: 'it.water.implementation', name: 'Implementation-osgi', version: project.waterVersion
+
+    implementation group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
+    //Validation
+    implementation group: "org.hibernate", name: "hibernate-validator", version: project.hibernateValidatorVersion
+    //CDI
+    // https://mvnrepository.com/artifact/org.osgi/org.osgi.service.cdi
+    implementation group: 'org.osgi', name: 'org.osgi.service.cdi', version: '1.0.1'
+    implementation group: 'javax.annotation', name: 'javax.annotation-api'
+    implementation group: 'javax.enterprise', name: 'cdi-api', version: '2.0.SP1'
+
+    testImplementation group: "org.apache.karaf.itests", name: "common", version: project.karafVersion
+    testImplementation group: "org.apache.karaf", name: "apache-karaf", version: project.karafVersion
+    testImplementation group: "org.apache.karaf.shell", name: "org.apache.karaf.shell.core", version: project.karafVersion
+    testImplementation group: "org.ops4j.pax.exam", name: "pax-exam-container-karaf", version: project.paxExamVersion
+    testImplementation group: "org.ops4j.pax.exam", name: "pax-exam-junit4", version: project.paxExamVersion
+    testImplementation group: "org.ops4j.pax.exam", name: "pax-exam", version: project.paxExamVersion
+}
+
+/**
+ * Utility bundle to be deployed inside karaf for test purporse*/
+tasks.register("osgiJarTest", Bundle) {
+    from sourceSets.main.output
+    bndfile = file("bnd-test-bundle.bnd")
+    sourceSet = sourceSets.main
+    classpath = sourceSets.main.compileClasspath
+}
+
+jar {
+    enabled false
+}
+
+jar.dependsOn(osgiJarTest)
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        osgiTest(MavenPublication) {
+            artifact tasks.osgiJarTest
+            artifactId 'Water-osgi-test-bundle'
+        }
+    }
+}
+ 
