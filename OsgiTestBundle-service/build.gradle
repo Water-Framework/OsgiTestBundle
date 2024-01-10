@@ -23,7 +23,6 @@ dependencies {
     implementation group: "org.osgi", name: "osgi.cmpn", version: project.osgiCompendiumVersion
     implementation group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
     //Validation
-    //Validation
     implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: project.jakartaValidationVersion
     implementation group: "org.hibernate", name: "hibernate-validator", version: project.hibernateValidatorVersion
     //test utils
