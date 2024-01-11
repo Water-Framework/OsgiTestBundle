@@ -44,7 +44,7 @@ public class TestEntityRepositoryImpl extends BaseJpaRepositoryImpl<TestEntity> 
     }
 
     @Override
-    protected EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         return entityManagerFactory.createEntityManager();
     }
 }
