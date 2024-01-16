@@ -18,7 +18,7 @@
 package it.water.osgi.test.bundle.entity;
 
 import it.water.core.api.registry.filter.ComponentFilterBuilder;
-import it.water.repository.service.jakarta.EntitySystemServiceImpl;
+import it.water.repository.service.BaseEntitySystemServiceImpl;
 import lombok.Getter;
 import lombok.Setter;
 import org.osgi.service.cdi.annotations.Bean;
@@ -31,7 +31,7 @@ import javax.inject.Inject;
 @SingleComponent
 @Bean
 @Service(value = TestEntitySystemApi.class)
-public class TestEntitySystemServiceImpl extends EntitySystemServiceImpl<TestEntity> implements TestEntitySystemApi {
+public class TestEntitySystemServiceImpl extends BaseEntitySystemServiceImpl<TestEntity> implements TestEntitySystemApi {
     @Inject
     @Reference
     @Getter
