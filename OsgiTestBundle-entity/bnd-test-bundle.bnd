@@ -1,6 +1,6 @@
 Bundle-Name: Water OSGi Test Bundle Entity
 Bundle-SymbolicName: Water-implementation-osgi-test-bundle-entity
-Bundle-Activator: it.water.osgi.test.bundle.entity.TestBundleActivator
+Bundle-Activator: it.water.implementation.osgi.bundle.WaterBundleActivator
 Import-Package: \
     org.osgi.framework,\
     org.slf4j.*,\
