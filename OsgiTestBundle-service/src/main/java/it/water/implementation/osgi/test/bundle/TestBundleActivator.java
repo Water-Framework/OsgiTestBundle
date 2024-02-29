@@ -15,7 +15,6 @@
  */
 package it.water.implementation.osgi.test.bundle;
 
-import it.water.core.api.bundle.Runtime;
 import it.water.core.api.registry.ComponentRegistry;
 import it.water.core.bundle.ApplicationInitializer;
 import org.osgi.framework.BundleContext;
@@ -38,13 +37,6 @@ public class TestBundleActivator<T> extends ApplicationInitializer<T, ServiceReg
     protected ComponentRegistry getComponentRegistry() {
         BundleContext ctx = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
         ServiceReference<ComponentRegistry> sr = ctx.getServiceReference(ComponentRegistry.class);
-        return ctx.getService(sr);
-    }
-
-    @Override
-    protected Runtime getRuntime() {
-        BundleContext ctx = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
-        ServiceReference<Runtime> sr = ctx.getServiceReference(Runtime.class);
         return ctx.getService(sr);
     }
 
