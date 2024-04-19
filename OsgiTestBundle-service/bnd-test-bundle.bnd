@@ -20,5 +20,7 @@ Import-Package: \
     javax.persistence.*,\
     it.water.*
 DynamicImport-Package: *
-Export-Package: it.water.implementation.osgi.test.bundle
+Export-Package: \
+    it.water.implementation.osgi.test.bundle,\
+    it.water.core.testing.utils.*
 -cdiannotations: *;discover=annotated_by_bean

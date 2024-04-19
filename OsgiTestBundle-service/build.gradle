@@ -1,7 +1,17 @@
 import aQute.bnd.gradle.Bundle
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     id "biz.aQute.bnd.builder"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+configurations {
+    includeIndexAnnotations {
+        canBeResolved(true)
+        canBeConsumed(false)
+        transitive false
+    }
 }
 
 dependencies {
@@ -43,6 +53,8 @@ dependencies {
     implementation group: 'it.water.core', name: 'Core-security', version: project.waterVersion
     implementation group: 'it.water.core', name: 'Core-service', version: project.waterVersion
     implementation group: 'it.water.core', name: 'Core-validation', version: project.waterVersion
+    implementation group: 'it.water.core', name: 'Core-testing-utils', version: project.waterVersion
+    includeIndexAnnotations group: 'it.water.core', name: 'Core-testing-utils', version: project.waterVersion
     implementation group: 'it.water.implementation', name: 'Implementation-osgi', version: project.waterVersion
 
     implementation group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
@@ -64,22 +76,40 @@ dependencies {
 
 /**
  * Utility bundle to be deployed inside karaf for test purporse*/
-tasks.register("osgiJarTest", Bundle) {
+tasks.register("osgiJarBundle", Bundle) {
     from sourceSets.main.output
     bndfile = file("bnd-test-bundle.bnd")
     sourceSet = sourceSets.main
     classpath = sourceSets.main.compileClasspath
 }
 
+task extractBundle(type: Copy) {
+    from zipTree(tasks.osgiJarBundle.outputs.files.first())
+    into "${buildDir}/osgiBundle"
+}
+
+task("osgiJarTest", type: ShadowJar) {
+    from "${buildDir}/osgiBundle"
+    from zipTree(project.configurations.includeIndexAnnotations.files.find { it.name.startsWith("Core-testing-utils") })
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    manifest {
+        from "${buildDir}/osgiBundle/META-INF/MANIFEST.MF"
+    }
+    mergeServiceFiles {
+        path = '**/META-INF/*'
+    }
+}
+
 jar {
     enabled false
 }
 
-jar.dependsOn(osgiJarTest)
-
 test {
     useJUnitPlatform()
 }
+
+extractBundle.dependsOn(osgiJarBundle)
+osgiJarTest.dependsOn(extractBundle)
 
 publishing {
     publications {

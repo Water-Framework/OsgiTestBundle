@@ -34,7 +34,7 @@
         limitations under the License.
     -->
 
-    <persistence-unit name="water-persistence-unit" transaction-type="JTA">
+    <persistence-unit name="water-default-persistence-unit" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Only used when transaction-type=JTA -->
         <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=water)</jta-data-source>

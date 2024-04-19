@@ -36,7 +36,7 @@ import javax.transaction.Transactional;
 public class TestEntityRepositoryImpl extends BaseJpaRepositoryImpl<TestEntity> implements TestEntityRepository {
     @Inject
     @Reference
-    @PersistenceUnit(unitName = "water-persistence-unit")
+    @PersistenceUnit(unitName = "water-default-persistence-unit")
     EntityManagerFactory entityManagerFactory;
 
     public TestEntityRepositoryImpl() {
@@ -46,5 +46,10 @@ public class TestEntityRepositoryImpl extends BaseJpaRepositoryImpl<TestEntity> 
     @Override
     public EntityManager getEntityManager() {
         return entityManagerFactory.createEntityManager();
+    }
+
+    @Override
+    protected String getPersistenceUnitName() {
+        return "water-default-persistence-unit";
     }
 }
