@@ -17,7 +17,7 @@
 
 package it.water.osgi.test.bundle.entity;
 
-import it.water.repository.jpa.BaseJpaRepositoryImpl;
+import it.water.repository.jpa.osgi.OsgiBaseJpaRepository;
 import org.osgi.service.cdi.annotations.Bean;
 import org.osgi.service.cdi.annotations.Reference;
 import org.osgi.service.cdi.annotations.Service;
@@ -33,14 +33,14 @@ import javax.transaction.Transactional;
 @Bean
 @Service(value = TestEntityRepository.class)
 @Transactional
-public class TestEntityRepositoryImpl extends BaseJpaRepositoryImpl<TestEntity> implements TestEntityRepository {
+public class TestEntityRepositoryImpl extends OsgiBaseJpaRepository<TestEntity> implements TestEntityRepository {
     @Inject
     @Reference
     @PersistenceUnit(unitName = "water-default-persistence-unit")
     EntityManagerFactory entityManagerFactory;
 
     public TestEntityRepositoryImpl() {
-        super(TestEntity.class);
+        super(TestEntity.class, "water-default-persistence-unit");
     }
 
     @Override
