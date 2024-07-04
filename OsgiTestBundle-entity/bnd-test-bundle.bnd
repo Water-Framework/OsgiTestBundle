@@ -4,20 +4,17 @@ Bundle-Activator: it.water.implementation.osgi.bundle.WaterBundleActivator
 Import-Package: \
     org.osgi.framework,\
     org.slf4j.*,\
-    org.apache.aries.jpa.*,\
     org.apache.aries.cdi.*,\
-    org.hibernate.proxy;version='[5,6)',\
     org.hibernate.validator;version='${range;[=,+)}',\
     org.hibernate.validator.*;version='${range;[=,+)}',\
-    org.hibernate.annotations;version='[5,6)',\
     javassist.util.proxy,\
     jakarta.validation,\
     jakarta.validation.*,\
-    javax.persistence,\
-    javax.transaction,\
-    javax.enterprise.*,\
+    jakarta.persistence,\
+    jakarta.transaction,\
+    jakarta.enterprise.*,\
     org.osgi.service.*,\
-    javax.persistence.*,\
+    jakarta.persistence.*,\
     it.water.implementation.osgi.test.bundle,\
     it.water.*
 DynamicImport-Package: *

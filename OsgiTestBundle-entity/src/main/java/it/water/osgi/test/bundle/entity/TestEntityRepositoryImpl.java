@@ -18,34 +18,24 @@
 package it.water.osgi.test.bundle.entity;
 
 import it.water.repository.jpa.osgi.OsgiBaseJpaRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceUnit;
+import jakarta.transaction.Transactional;
 import org.osgi.service.cdi.annotations.Bean;
 import org.osgi.service.cdi.annotations.Reference;
 import org.osgi.service.cdi.annotations.Service;
 import org.osgi.service.cdi.annotations.SingleComponent;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
-import javax.transaction.Transactional;
 
 @SingleComponent
 @Bean
 @Service(value = TestEntityRepository.class)
-@Transactional
 public class TestEntityRepositoryImpl extends OsgiBaseJpaRepository<TestEntity> implements TestEntityRepository {
-    @Inject
-    @Reference
-    @PersistenceUnit(unitName = "water-default-persistence-unit")
-    EntityManagerFactory entityManagerFactory;
 
     public TestEntityRepositoryImpl() {
         super(TestEntity.class, "water-default-persistence-unit");
-    }
-
-    @Override
-    public EntityManager getEntityManager() {
-        return entityManagerFactory.createEntityManager();
     }
 
     @Override

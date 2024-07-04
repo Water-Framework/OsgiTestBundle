@@ -21,8 +21,8 @@ dependencies {
     implementation group: 'org.projectlombok', name: 'lombok', version: project.lombokVersion
     annotationProcessor 'org.projectlombok:lombok:' + project.lombokVersion
     //Persistence
-    implementation group: 'javax.persistence', name: 'javax.persistence-api', version: project.javaxPersistenceVersion
-    implementation group: 'javax.transaction', name: 'javax.transaction-api', version: project.javaxTransactionApiVersion
+    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: project.jakartaPersistenceVersion
+    implementation group: 'jakarta.transaction', name: 'jakarta.transaction-api', version: project.jakartaTransactionApiVersion
     //Jackson
     implementation group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: project.jacksonVersion
     //Encryption

@@ -19,8 +19,8 @@ package it.water.osgi.test.bundle.entity;
 
 import it.water.core.validation.annotations.NoMalitiusCode;
 import it.water.repository.jpa.model.AbstractJpaEntity;
+import jakarta.persistence.Entity;
 
-import javax.persistence.Entity;
 
 @Entity
 public class TestEntity extends AbstractJpaEntity {
