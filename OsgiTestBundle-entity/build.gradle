@@ -13,15 +13,12 @@ dependencies {
 	//Persistence
 	implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: project.jakartaPersistenceVersion
 	implementation group: 'jakarta.transaction', name: 'jakarta.transaction-api', version: project.jakartaTransactionApiVersion
-	//Jackson
-	implementation group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: project.jacksonVersion
 	//Encryption
 	implementation group: 'org.bouncycastle', name: 'bcmail-jdk15on', version: project.bouncyCastleVersion
 	implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: project.nimbusJoseJwtVersion
 	//OSGi
 	implementation group: "org.osgi", name: "osgi.core", version: project.osgiVersion
 	implementation group: "org.osgi", name: "osgi.cmpn", version: project.osgiCompendiumVersion
-	implementation group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
 	//Validation
 	implementation group: "org.hibernate", name: "hibernate-validator", version: project.hibernateValidatorVersion
 	//test utils
@@ -48,8 +45,6 @@ dependencies {
 	implementation group: 'it.water.repository', name: 'Repository-service', version: project.waterVersion
 	implementation group: 'it.water.repository.jpa', name: 'JpaRepository-api', version: project.waterVersion
 	implementation group: 'it.water.repository.jpa', name: 'JpaRepository-osgi', version: project.waterVersion
-
-	implementation group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
 
 	//CDI
 	// https://mvnrepository.com/artifact/org.osgi/org.osgi.service.cdi
