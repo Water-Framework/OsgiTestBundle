@@ -46,11 +46,6 @@ public class TestEntityServiceImpl extends BaseEntityServiceImpl<TestEntity> imp
     }
 
     @Override
-    protected SecurityContext getSecurityContext() {
-        return null;
-    }
-
-    @Override
     protected BaseEntitySystemApi<TestEntity> getSystemService() {
         return systemService;
     }
