@@ -19,5 +19,4 @@ Import-Package: \
     it.water.*
 DynamicImport-Package: *
 Export-Package: it.water.osgi.test.bundle.entity
-Meta-Persistence: META-INF/persistence.xml
 -cdiannotations: *;discover=annotated_by_bean
