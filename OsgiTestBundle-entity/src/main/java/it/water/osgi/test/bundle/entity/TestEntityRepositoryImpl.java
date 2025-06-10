@@ -17,17 +17,11 @@
 
 package it.water.osgi.test.bundle.entity;
 
-import it.water.repository.jpa.osgi.OsgiBaseJpaRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.PersistenceUnit;
-import jakarta.transaction.Transactional;
 import org.osgi.service.cdi.annotations.Bean;
-import org.osgi.service.cdi.annotations.Reference;
 import org.osgi.service.cdi.annotations.Service;
 import org.osgi.service.cdi.annotations.SingleComponent;
 
-import javax.inject.Inject;
+import it.water.repository.jpa.osgi.OsgiBaseJpaRepository;
 
 @SingleComponent
 @Bean

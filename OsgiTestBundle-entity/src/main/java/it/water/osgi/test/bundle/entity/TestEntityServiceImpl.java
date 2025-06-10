@@ -17,16 +17,16 @@
 
 package it.water.osgi.test.bundle.entity;
 
-import it.water.core.api.permission.SecurityContext;
-import it.water.core.api.registry.ComponentRegistry;
-import it.water.core.api.service.BaseEntitySystemApi;
-import it.water.repository.service.BaseEntityServiceImpl;
+import javax.inject.Inject;
+
 import org.osgi.service.cdi.annotations.Bean;
 import org.osgi.service.cdi.annotations.Reference;
 import org.osgi.service.cdi.annotations.Service;
 import org.osgi.service.cdi.annotations.SingleComponent;
 
-import javax.inject.Inject;
+import it.water.core.api.registry.ComponentRegistry;
+import it.water.core.api.service.BaseEntitySystemApi;
+import it.water.repository.service.BaseEntityServiceImpl;
 
 @SingleComponent
 @Bean
